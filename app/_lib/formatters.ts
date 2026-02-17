@@ -10,6 +10,9 @@ export const formatCurrency = (value: number): string =>
 export const formatDate = (dateString: string): string =>
   format(parseISO(dateString), "dd/MM/yyyy", { locale: ptBR });
 
+export const formatDateTime = (dateString: string): string =>
+  format(parseISO(dateString), "dd/MM/yyyy HH:mm", { locale: ptBR });
+
 export const formatDateISO = (date: Date): string =>
   format(date, "yyyy-MM-dd");
 

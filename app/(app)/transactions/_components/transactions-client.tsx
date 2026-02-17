@@ -84,6 +84,7 @@ const TransactionsClient = ({ transactions }: TransactionsClientProps) => {
         data={filtered}
         searchKey="description"
         searchPlaceholder="Buscar por descrição..."
+        initialSorting={[{ id: "updatedAt", desc: true }]}
       />
 
       <TransactionFormDialog

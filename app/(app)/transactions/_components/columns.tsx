@@ -5,7 +5,7 @@ import { ArrowUpDown, Pencil, Trash2 } from "lucide-react";
 import { Button } from "@/app/_components/ui/button";
 import { Badge } from "@/app/_components/ui/badge";
 import { Transaction, TransactionType } from "@/app/_models/transaction";
-import { formatCurrency, formatDate } from "@/app/_lib/formatters";
+import { formatCurrency, formatDate, formatDateTime } from "@/app/_lib/formatters";
 
 interface ColumnCallbacks {
   onEdit: (transaction: Transaction) => void;
@@ -120,6 +120,26 @@ export const createColumns = ({
         </Badge>
       );
     },
+  },
+  {
+    id: "updatedAt",
+    accessorFn: (row) => row.updatedAt ?? row.createdAt,
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        size="sm"
+        className="-ml-3 text-xs font-medium uppercase tracking-wide"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Última Modificação
+        <ArrowUpDown className="ml-1 size-3.5" />
+      </Button>
+    ),
+    cell: ({ getValue }) => (
+      <span className="text-slate-600">
+        {formatDateTime(getValue<string>())}
+      </span>
+    ),
   },
   {
     id: "actions",
