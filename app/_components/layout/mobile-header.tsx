@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   Receipt,
   FileText,
+  LogOut,
   Menu,
 } from "lucide-react";
 import { cn } from "@/app/_lib/utils";
@@ -19,6 +20,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/app/_components/ui/sheet";
+import { logout } from "@/app/_actions/logout";
 
 const NAV_ITEMS = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -52,7 +54,7 @@ const MobileHeader = () => {
                 Alterdata Finance
               </SheetTitle>
             </SheetHeader>
-            <nav className="p-4 space-y-1">
+            <nav className="flex-1 p-4 space-y-1">
               {NAV_ITEMS.map(({ href, label, icon: Icon }) => (
                 <Link
                   key={href}
@@ -70,6 +72,15 @@ const MobileHeader = () => {
                 </Link>
               ))}
             </nav>
+            <div className="p-4 border-t border-slate-200">
+              <button
+                onClick={() => logout()}
+                className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors"
+              >
+                <LogOut className="size-5" />
+                Sair
+              </button>
+            </div>
           </SheetContent>
         </Sheet>
 

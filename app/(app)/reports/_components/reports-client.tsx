@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { TransactionType } from "@/app/_models/transaction";
 import { ReportResponse } from "@/app/_models/report";
-import { getReport } from "@/app/reports/_actions/get-report";
+import { getReport } from "@/app/(app)/reports/_actions/get-report";
 import { formatDateISO } from "@/app/_lib/formatters";
 import ReportFilters from "./report-filters";
 import ReportSummary from "./report-summary";

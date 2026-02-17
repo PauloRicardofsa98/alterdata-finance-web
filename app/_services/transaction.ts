@@ -1,4 +1,4 @@
-import { api } from "@/app/_lib/api";
+import { getApi } from "@/app/_lib/api";
 import {
   Transaction,
   CreateTransactionRequest,
@@ -9,16 +9,19 @@ const BASE_PATH = "/transactions";
 
 export const transactionService = {
   async getAll(): Promise<Transaction[]> {
+    const api = await getApi();
     const { data } = await api.get<Transaction[]>(BASE_PATH);
     return data;
   },
 
   async getById(id: string): Promise<Transaction> {
+    const api = await getApi();
     const { data } = await api.get<Transaction>(`${BASE_PATH}/${id}`);
     return data;
   },
 
   async create(request: CreateTransactionRequest): Promise<Transaction> {
+    const api = await getApi();
     const { data } = await api.post<Transaction>(BASE_PATH, request);
     return data;
   },
@@ -27,11 +30,13 @@ export const transactionService = {
     id: string,
     request: UpdateTransactionRequest,
   ): Promise<Transaction> {
+    const api = await getApi();
     const { data } = await api.put<Transaction>(`${BASE_PATH}/${id}`, request);
     return data;
   },
 
   async delete(id: string): Promise<void> {
+    const api = await getApi();
     await api.delete(`${BASE_PATH}/${id}`);
   },
 };

@@ -10,7 +10,7 @@ import {
   DialogDescription,
 } from "@/app/_components/ui/dialog";
 import { Button } from "@/app/_components/ui/button";
-import { deleteTransaction } from "@/app/transactions/_actions/delete-transaction";
+import { deleteTransaction } from "@/app/(app)/transactions/_actions/delete-transaction";
 
 interface DeleteConfirmDialogProps {
   open: boolean;

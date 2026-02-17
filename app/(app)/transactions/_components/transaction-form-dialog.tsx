@@ -21,8 +21,8 @@ import {
 } from "@/app/_components/ui/select";
 import { transactionSchema, TransactionFormData } from "@/app/_lib/validators";
 import { Transaction, TransactionType } from "@/app/_models/transaction";
-import { createTransaction } from "@/app/transactions/_actions/create-transaction";
-import { updateTransaction } from "@/app/transactions/_actions/update-transaction";
+import { createTransaction } from "@/app/(app)/transactions/_actions/create-transaction";
+import { updateTransaction } from "@/app/(app)/transactions/_actions/update-transaction";
 
 interface TransactionFormDialogProps {
   open: boolean;
