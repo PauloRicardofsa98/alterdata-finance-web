@@ -1,9 +1,15 @@
+import ReportsClient from "./_components/reports-client";
+
 const ReportsPage = () => (
-  <div>
-    <h1 className="text-2xl font-semibold">Relatórios</h1>
-    <p className="mt-2 text-muted-foreground">
-      Gere relatórios por período.
-    </p>
+  <div className="space-y-4">
+    <div>
+      <h1 className="text-2xl font-semibold">Relatórios</h1>
+      <p className="text-muted-foreground">
+        Gere relatórios financeiros por período.
+      </p>
+    </div>
+
+    <ReportsClient />
   </div>
 );
 
