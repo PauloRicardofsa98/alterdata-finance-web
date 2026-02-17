@@ -3,9 +3,10 @@
 import { useState, useMemo } from "react";
 import { Plus } from "lucide-react";
 import { Button } from "@/app/_components/ui/button";
+import { DataTable } from "@/app/_components/ui/data-table";
 import { cn } from "@/app/_lib/utils";
 import { Transaction, TransactionType } from "@/app/_models/transaction";
-import TransactionTable from "./transaction-table";
+import { createColumns } from "./columns";
 import TransactionFormDialog from "./transaction-form-dialog";
 import DeleteConfirmDialog from "./delete-confirm-dialog";
 
@@ -47,6 +48,11 @@ const TransactionsClient = ({ transactions }: TransactionsClientProps) => {
     if (!open) setEditingTransaction(null);
   };
 
+  const columns = useMemo(
+    () => createColumns({ onEdit: handleEdit, onDelete: setDeletingTransaction }),
+    []
+  );
+
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -73,10 +79,11 @@ const TransactionsClient = ({ transactions }: TransactionsClientProps) => {
         </Button>
       </div>
 
-      <TransactionTable
-        transactions={filtered}
-        onEdit={handleEdit}
-        onDelete={setDeletingTransaction}
+      <DataTable
+        columns={columns}
+        data={filtered}
+        searchKey="description"
+        searchPlaceholder="Buscar por descrição..."
       />
 
       <TransactionFormDialog
