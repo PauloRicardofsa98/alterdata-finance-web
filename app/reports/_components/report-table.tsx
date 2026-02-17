@@ -15,48 +15,69 @@ interface ReportTableProps {
 }
 
 const ReportTable = ({ transactions }: ReportTableProps) => (
-  <div className="overflow-x-auto rounded-md border">
+  <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
     <Table>
       <TableHeader>
-        <TableRow>
-          <TableHead>Descrição</TableHead>
-          <TableHead>Valor</TableHead>
-          <TableHead>Data</TableHead>
-          <TableHead>Categoria</TableHead>
-          <TableHead>Tipo</TableHead>
+        <TableRow className="hover:bg-transparent">
+          <TableHead className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Descrição
+          </TableHead>
+          <TableHead className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Valor
+          </TableHead>
+          <TableHead className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Data
+          </TableHead>
+          <TableHead className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Categoria
+          </TableHead>
+          <TableHead className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Tipo
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {transactions.length === 0 ? (
           <TableRow>
             <TableCell colSpan={5} className="h-24 text-center">
-              Nenhuma transação encontrada no período.
+              <div className="flex flex-col items-center justify-center py-8">
+                <p className="text-sm text-slate-500">
+                  Nenhuma transação encontrada no período.
+                </p>
+              </div>
             </TableCell>
           </TableRow>
         ) : (
           transactions.map((transaction) => (
-            <TableRow key={transaction.id}>
-              <TableCell className="font-medium">
+            <TableRow
+              key={transaction.id}
+              className="hover:bg-slate-50 transition-colors"
+            >
+              <TableCell className="font-medium text-slate-900">
                 {transaction.description}
               </TableCell>
               <TableCell
                 className={
                   transaction.type === TransactionType.Revenue
-                    ? "text-emerald-600"
-                    : "text-red-600"
+                    ? "font-medium text-primary"
+                    : "font-medium text-slate-900"
                 }
               >
                 {transaction.type === TransactionType.Revenue ? "+" : "-"}
                 {formatCurrency(transaction.amount)}
               </TableCell>
-              <TableCell>{formatDate(transaction.date)}</TableCell>
-              <TableCell>{transaction.category ?? "—"}</TableCell>
+              <TableCell className="text-slate-600">
+                {formatDate(transaction.date)}
+              </TableCell>
+              <TableCell className="text-slate-600">
+                {transaction.category ?? "—"}
+              </TableCell>
               <TableCell>
                 <Badge
-                  variant={
+                  className={
                     transaction.type === TransactionType.Revenue
-                      ? "default"
-                      : "destructive"
+                      ? "bg-primary/10 text-primary hover:bg-primary/10"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-100"
                   }
                 >
                   {transaction.type === TransactionType.Revenue

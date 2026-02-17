@@ -26,74 +26,61 @@ const NAV_ITEMS = [
   { href: "/reports", label: "Relatórios", icon: FileText },
 ];
 
-const Header = () => {
+const MobileHeader = () => {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  const navLinkClass = (href: string) =>
-    cn(
-      "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground",
-      isActive(href)
-        ? "bg-accent text-accent-foreground"
-        : "text-muted-foreground"
-    );
+  const currentPage =
+    NAV_ITEMS.find((item) => isActive(item.href))?.label ?? "Dashboard";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-14 items-center justify-between px-4">
-        <div className="flex items-center">
-          <Link
-            href="/"
-            className="mr-8 flex items-center gap-2 font-semibold"
-          >
-            <DollarSign className="size-5 text-primary" />
-            <span>Alterdata Finance</span>
-          </Link>
-
-          <nav className="hidden items-center gap-1 md:flex">
-            {NAV_ITEMS.map(({ href, label, icon: Icon }) => (
-              <Link key={href} href={href} className={navLinkClass(href)}>
-                <Icon className="size-4" />
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
+    <header className="sticky top-0 z-40 bg-white border-b border-slate-200 lg:hidden">
+      <div className="flex items-center justify-between h-14 px-4">
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden">
+            <Button variant="ghost" size="icon">
               <Menu className="size-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="w-64">
-            <SheetHeader>
+          <SheetContent side="left" className="p-0 w-72">
+            <SheetHeader className="p-6 border-b border-slate-200">
               <SheetTitle className="flex items-center gap-2">
                 <DollarSign className="size-5 text-primary" />
                 Alterdata Finance
               </SheetTitle>
             </SheetHeader>
-            <nav className="mt-6 flex flex-col gap-1">
+            <nav className="p-4 space-y-1">
               {NAV_ITEMS.map(({ href, label, icon: Icon }) => (
                 <Link
                   key={href}
                   href={href}
                   onClick={() => setOpen(false)}
-                  className={navLinkClass(href)}
+                  className={cn(
+                    "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                    isActive(href)
+                      ? "bg-primary/10 text-primary"
+                      : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                  )}
                 >
-                  <Icon className="size-4" />
+                  <Icon className="size-5" />
                   {label}
                 </Link>
               ))}
             </nav>
           </SheetContent>
         </Sheet>
+
+        <span className="text-lg font-semibold text-slate-900">
+          {currentPage}
+        </span>
+
+        <div className="w-10" />
       </div>
     </header>
   );
 };
 
-export default Header;
+export default MobileHeader;

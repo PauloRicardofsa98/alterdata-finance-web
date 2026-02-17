@@ -11,26 +11,29 @@ const TransactionsPage = async () => {
   try {
     transactions = await transactionService.getAll();
   } catch {
-    error = "Não foi possível carregar as transações. Verifique se a API está rodando.";
+    error =
+      "Não foi possível carregar as transações. Verifique se a API está rodando.";
   }
 
   return (
-    <div className="space-y-4">
+    <>
       <div>
-        <h1 className="text-2xl font-semibold">Transações</h1>
-        <p className="text-muted-foreground">
-          Gerencie suas despesas e receitas.
+        <h1 className="text-xl font-bold text-slate-900 sm:text-2xl">
+          Transações
+        </h1>
+        <p className="mt-1 text-sm text-slate-500">
+          Gerencie suas despesas e receitas
         </p>
       </div>
 
       {error ? (
-        <div className="rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+        <div className="flex items-start gap-2 rounded-lg border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive">
           {error}
         </div>
       ) : (
         <TransactionsClient transactions={transactions} />
       )}
-    </div>
+    </>
   );
 };
 

@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/app/_components/ui/select";
+import { Card, CardContent } from "@/app/_components/ui/card";
 import { Search } from "lucide-react";
 import { TransactionType } from "@/app/_models/transaction";
 
@@ -34,46 +35,65 @@ const ReportFilters = ({
   onSubmit,
   isLoading,
 }: ReportFiltersProps) => (
-  <div className="flex flex-wrap items-end gap-4">
-    <div className="space-y-2">
-      <Label htmlFor="startDate">Data Inicial</Label>
-      <Input
-        id="startDate"
-        type="date"
-        value={startDate}
-        onChange={(e) => onStartDateChange(e.target.value)}
-      />
-    </div>
+  <Card>
+    <CardContent className="p-4 sm:p-6">
+      <div className="flex flex-wrap items-end gap-4">
+        <div className="space-y-2">
+          <Label
+            htmlFor="startDate"
+            className="text-xs font-medium uppercase tracking-wide text-slate-500"
+          >
+            Data Inicial
+          </Label>
+          <Input
+            id="startDate"
+            type="date"
+            value={startDate}
+            onChange={(e) => onStartDateChange(e.target.value)}
+          />
+        </div>
 
-    <div className="space-y-2">
-      <Label htmlFor="endDate">Data Final</Label>
-      <Input
-        id="endDate"
-        type="date"
-        value={endDate}
-        onChange={(e) => onEndDateChange(e.target.value)}
-      />
-    </div>
+        <div className="space-y-2">
+          <Label
+            htmlFor="endDate"
+            className="text-xs font-medium uppercase tracking-wide text-slate-500"
+          >
+            Data Final
+          </Label>
+          <Input
+            id="endDate"
+            type="date"
+            value={endDate}
+            onChange={(e) => onEndDateChange(e.target.value)}
+          />
+        </div>
 
-    <div className="space-y-2">
-      <Label>Tipo</Label>
-      <Select value={type} onValueChange={onTypeChange}>
-        <SelectTrigger className="w-[150px]">
-          <SelectValue placeholder="Todos" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">Todos</SelectItem>
-          <SelectItem value={TransactionType.Expense}>Despesas</SelectItem>
-          <SelectItem value={TransactionType.Revenue}>Receitas</SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
+        <div className="space-y-2">
+          <Label className="text-xs font-medium uppercase tracking-wide text-slate-500">
+            Tipo
+          </Label>
+          <Select value={type} onValueChange={onTypeChange}>
+            <SelectTrigger className="w-[150px]">
+              <SelectValue placeholder="Todos" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos</SelectItem>
+              <SelectItem value={TransactionType.Expense}>Despesas</SelectItem>
+              <SelectItem value={TransactionType.Revenue}>Receitas</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
 
-    <Button onClick={onSubmit} disabled={isLoading || !startDate || !endDate}>
-      <Search className="size-4" />
-      {isLoading ? "Gerando..." : "Gerar Relatório"}
-    </Button>
-  </div>
+        <Button
+          onClick={onSubmit}
+          disabled={isLoading || !startDate || !endDate}
+        >
+          <Search className="size-4" />
+          {isLoading ? "Gerando..." : "Gerar Relatório"}
+        </Button>
+      </div>
+    </CardContent>
+  </Card>
 );
 
 export default ReportFilters;

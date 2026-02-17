@@ -25,31 +25,33 @@ const DashboardPage = async ({ searchParams }: DashboardPageProps) => {
   }
 
   return (
-    <div className="space-y-6">
+    <>
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold">Dashboard</h1>
-          <p className="text-muted-foreground">
-            Visão geral das suas finanças.
+          <h1 className="text-xl font-bold text-slate-900 sm:text-2xl">
+            Dashboard
+          </h1>
+          <p className="mt-1 text-sm text-slate-500">
+            Visão geral das suas finanças
           </p>
         </div>
         <YearSelector year={year} />
       </div>
 
       {error ? (
-        <div className="rounded-md border border-destructive/50 bg-destructive/10 p-4 text-sm text-destructive">
+        <div className="flex items-start gap-2 rounded-lg border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive">
           {error}
         </div>
       ) : dashboard ? (
         <>
           <SummaryCards items={dashboard.monthlyData} />
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
             <MonthlyChart items={dashboard.monthlyData} />
             <BalanceChart items={dashboard.monthlyData} />
           </div>
         </>
       ) : null}
-    </div>
+    </>
   );
 };
 
