@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  DollarSign,
   LayoutDashboard,
   Receipt,
   FileText,
@@ -50,8 +50,7 @@ const MobileHeader = () => {
           <SheetContent side="left" className="p-0 w-72">
             <SheetHeader className="p-6 border-b border-slate-200">
               <SheetTitle className="flex items-center gap-2">
-                <DollarSign className="size-5 text-primary" />
-                Alterdata Finance
+                <Image src="/logo.png" alt="Alterdata" width={140} height={32} unoptimized />
               </SheetTitle>
             </SheetHeader>
             <nav className="flex-1 p-4 space-y-1">

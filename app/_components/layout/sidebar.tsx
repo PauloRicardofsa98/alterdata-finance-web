@@ -1,9 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  DollarSign,
   LayoutDashboard,
   Receipt,
   FileText,
@@ -28,10 +28,7 @@ const Sidebar = () => {
     <aside className="hidden lg:flex lg:flex-col lg:w-60 bg-white border-r border-slate-200 h-screen sticky top-0">
       <div className="p-6 border-b border-slate-200">
         <Link href="/" className="flex items-center gap-2">
-          <DollarSign className="size-5 text-primary" />
-          <span className="font-semibold text-slate-900">
-            Alterdata Finance
-          </span>
+          <Image src="/logo.png" alt="Alterdata" width={140} height={32} priority unoptimized />
         </Link>
       </div>
 
