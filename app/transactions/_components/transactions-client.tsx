@@ -43,7 +43,7 @@ const TransactionsClient = ({ transactions }: TransactionsClientProps) => {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <Tabs
           value={filter}
           onValueChange={(v) => setFilter(v as FilterType)}
@@ -55,7 +55,7 @@ const TransactionsClient = ({ transactions }: TransactionsClientProps) => {
           </TabsList>
         </Tabs>
 
-        <Button onClick={() => setFormOpen(true)}>
+        <Button onClick={() => setFormOpen(true)} className="w-full sm:w-auto">
           <Plus className="size-4" />
           Nova Transação
         </Button>
