@@ -10,3 +10,21 @@ export const getReport = async (
   type?: TransactionType
 ): Promise<ReportResponse> =>
   reportService.getReport({ startDate, endDate, type });
+
+export const exportCsv = async (
+  startDate: string,
+  endDate: string,
+  type?: TransactionType
+): Promise<number[]> => {
+  const buffer = await reportService.exportCsv({ startDate, endDate, type });
+  return Array.from(buffer);
+};
+
+export const exportPdf = async (
+  startDate: string,
+  endDate: string,
+  type?: TransactionType
+): Promise<number[]> => {
+  const buffer = await reportService.exportPdf({ startDate, endDate, type });
+  return Array.from(buffer);
+};
