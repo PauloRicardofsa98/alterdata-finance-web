@@ -6,7 +6,7 @@ export const transactionSchema = z.object({
     .string()
     .min(1, "Descrição é obrigatória")
     .max(200, "Descrição deve ter no máximo 200 caracteres"),
-  amount: z.coerce.number().positive("Valor deve ser maior que zero"),
+  amount: z.number().positive("Valor deve ser maior que zero"),
   date: z.string().min(1, "Data é obrigatória"),
   category: z
     .string()

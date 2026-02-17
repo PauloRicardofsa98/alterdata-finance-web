@@ -1,9 +1,6 @@
 import axios from "axios";
 
-const API_URL =
-  process.env.API_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:5139/api";
+const API_URL = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL;
 
 export const api = axios.create({
   baseURL: API_URL,
@@ -18,5 +15,5 @@ api.interceptors.response.use(
     const message =
       error.response?.data?.message || "Erro inesperado. Tente novamente.";
     return Promise.reject(new Error(message));
-  }
+  },
 );
