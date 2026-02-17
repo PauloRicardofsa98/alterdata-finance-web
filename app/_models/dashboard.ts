@@ -8,5 +8,5 @@ export interface MonthlyDataItem {
 
 export interface DashboardResponse {
   year: number;
-  items: MonthlyDataItem[];
+  monthlyData: MonthlyDataItem[];
 }
