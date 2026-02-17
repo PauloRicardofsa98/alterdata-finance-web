@@ -17,18 +17,18 @@ export const metadata: Metadata = {
   description: "Aplicativo de gerenciamento financeiro pessoal",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="pt-BR">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
-}
+}>) => (
+  <html lang="pt-BR">
+    <body
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+    >
+      {children}
+    </body>
+  </html>
+);
+
+export default RootLayout;
